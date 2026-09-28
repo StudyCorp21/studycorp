@@ -1,1 +1,105 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Proposer une annonce — StudyCorp</title><link rel="stylesheet" href="css/style.css"></head><body><header class="nav"><a class="brand" href="index.html"><span>Study</span>Corp</a><nav><a href="index.html#opportunites">Opportunités</a><a href="index.html#apropos">À propos</a></nav></header><main class="form-page section"><p class="eyebrow">Contribuer à StudyCorp</p><h1>Proposer une annonce</h1><p class="lead compact">Partagez une information académique utile. Cette version prépare un message que vous pourrez transmettre à l’équipe StudyCorp.</p><form id="proposal" class="form"><label>Établissement<input required name="school" placeholder="Ex. Université de Picardie Jules Verne"></label><label>Formation / opportunité<input required name="program" placeholder="Nom de la formation"></label><div class="form-row"><label>Pays<input required name="country" placeholder="France"></label><label>Niveau<select name="level"><option>Licence</option><option>Master</option><option>Doctorat</option><option>Autre</option></select></label></div><label>Information à partager<textarea required name="info" rows="6" placeholder="Que savez-vous de cette opportunité ?"></textarea></label><label>Bourse / projet associé (facultatif)<textarea name="funding" rows="3"></textarea></label><label>Source ou lien officiel (facultatif)<input name="source" type="url" placeholder="https://…"></label><label>Votre contact (facultatif)<input name="contact" placeholder="E-mail ou autre moyen de contact"></label><button class="button" type="submit">Préparer l’annonce</button></form><div id="result" class="result" hidden></div></main><script src="js/proposer.js"></script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Proposer une annonce — StudyCorp</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="index.html"><span>Study</span>Corp</a>
+  <nav><a href="index.html#opportunites">Opportunités</a><a href="index.html#apropos">À propos</a></nav>
+</header>
+
+<main class="form-page section">
+  <p class="eyebrow">Contribuer à StudyCorp</p>
+  <h1>Proposer une annonce</h1>
+  <p class="lead compact">Vous avez reçu une information utile sur une formation qui recherche des candidats ? Transmettez-la à StudyCorp. Chaque proposition est vérifiée avant publication.</p>
+
+  <div class="notice privacy-note">
+    <strong>Important :</strong> votre adresse e-mail sert uniquement à permettre à l’équipe StudyCorp de vous recontacter pour vérifier l’information. Elle ne sera pas affichée dans l’annonce publique.
+  </div>
+
+  <form id="proposal" class="form" novalidate>
+    <fieldset>
+      <legend>1. À propos de vous</legend>
+      <div class="form-row">
+        <label>Nom ou pseudonyme <span class="required">*</span>
+          <input required name="contributor_name" autocomplete="name" placeholder="Votre nom ou pseudonyme">
+        </label>
+        <label>Adresse e-mail <span class="required">*</span>
+          <input required name="email" type="email" autocomplete="email" placeholder="vous@exemple.com">
+        </label>
+      </div>
+
+      <label>Votre lien avec cette formation <span class="required">*</span>
+        <select required name="relationship">
+          <option value="" selected disabled>Sélectionnez votre situation</option>
+          <option>Étudiant(e) actuel(le) de la formation</option>
+          <option>Ancien(ne) étudiant(e) de la formation</option>
+          <option>Enseignant(e) de la formation</option>
+          <option>Responsable de la formation</option>
+          <option>Personnel de l'établissement</option>
+          <option>Autre</option>
+        </select>
+      </label>
+
+      <label id="relationship-other-wrap" hidden>Précisez votre situation
+        <input name="relationship_other" placeholder="Ex. étudiant d'une autre formation du même établissement">
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>2. Formation ou opportunité</legend>
+      <label>Établissement <span class="required">*</span>
+        <input required name="school" placeholder="Ex. Université de Picardie Jules Verne">
+      </label>
+      <label>Formation / opportunité <span class="required">*</span>
+        <input required name="program" placeholder="Ex. Master Sciences et Génie des Matériaux — PHINAM">
+      </label>
+      <div class="form-row">
+        <label>Pays <span class="required">*</span>
+          <input required name="country" placeholder="Ex. France">
+        </label>
+        <label>Niveau <span class="required">*</span>
+          <select required name="level">
+            <option value="" selected disabled>Choisir</option>
+            <option>Licence</option><option>Master 1</option><option>Master 2</option><option>Master</option><option>Doctorat</option><option>Autre</option>
+          </select>
+        </label>
+      </div>
+      <label>Information à partager <span class="required">*</span>
+        <textarea required name="info" rows="7" placeholder="Expliquez l'information que vous avez reçue : recherche de candidats, ouverture particulière aux candidatures internationales, places disponibles, contexte, etc."></textarea>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>3. Informations complémentaires</legend>
+      <label>Bourse / financement / projet associé <span class="optional">(facultatif)</span>
+        <textarea name="funding" rows="4" placeholder="Montant, durée, conditions connues, projet associé…"></textarea>
+      </label>
+      <label>Lien officiel de la formation <span class="optional">(facultatif à la soumission)</span>
+        <input name="source" type="url" inputmode="url" placeholder="https://…">
+        <small>Si vous ne l'avez pas, StudyCorp pourra le rechercher et le vérifier avant publication.</small>
+      </label>
+      <label>Autre élément permettant de vérifier l'information <span class="optional">(facultatif)</span>
+        <textarea name="verification_note" rows="3" placeholder="Ex. nom du département, page institutionnelle, contexte dans lequel l'information a été communiquée…"></textarea>
+      </label>
+    </fieldset>
+
+    <label class="check-label">
+      <input required type="checkbox" name="contact_permission" value="Oui">
+      <span>J'accepte que StudyCorp me recontacte à l'adresse indiquée afin de vérifier cette proposition. <span class="required">*</span></span>
+    </label>
+
+    <p class="form-disclaimer">L'envoi d'une proposition ne garantit pas sa publication. StudyCorp peut vérifier, reformuler, compléter ou ne pas publier une information lorsqu'elle ne peut pas être suffisamment confirmée.</p>
+
+    <button class="button submit-button" type="submit">Envoyer la proposition</button>
+    <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</main>
+
+<script src="js/proposer.js"></script>
+</body>
+</html>
